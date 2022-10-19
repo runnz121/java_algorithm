@@ -1,4 +1,4 @@
-package LinkedandArrayListNode;
+package Array;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -217,6 +217,7 @@ public class MyArrayList<T> implements List<T> {
 
 	@Override
 	public T set(int index, T element) {
+		// no need to check index; get will do it for us
 		T old = get(index);
 		array[index] = element;
 		return old;

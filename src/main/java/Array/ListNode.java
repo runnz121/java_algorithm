@@ -1,4 +1,4 @@
-package LinkedandArrayListNode;
+package Array;
 
 /**
  * @author downey

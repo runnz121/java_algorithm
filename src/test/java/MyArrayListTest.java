@@ -7,10 +7,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import Array.MyArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import LinkedandArrayListNode.MyArrayList;
+
 // import org.junit.jupiter.api.Test;
 
 /**
@@ -21,7 +22,6 @@ public class MyArrayListTest {
 
 	protected List<Integer> mylist;
 	protected List<Integer> list;
-
 
 	/**
 	 * @throws Exception
@@ -54,7 +54,7 @@ public class MyArrayListTest {
 			mylist.add(i);
 		}
 		//System.out.println(Arrays.toString(mal.toArray()));
-		assertThat(mylist.get(18), is(new Integer(19)));
+		assertThat(mylist.get(18), is(19));
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class MyArrayListTest {
 	public void testAddIntT() {
 		mylist.add(1, 5);
 		//System.out.println(Arrays.toString(mal.toArray()));
-		assertThat(mylist.get(1), is(new Integer(5)));
+		assertThat(mylist.get(1), is(5));
 		assertThat(mylist.size(), is(4));
 
 		try {
@@ -83,7 +83,7 @@ public class MyArrayListTest {
 
 		mylist.add(5, 7);
 		//System.out.println(Arrays.toString(mal.toArray()));
-		assertThat(mylist.get(5), is(new Integer(7)));
+		assertThat(mylist.get(5), is(7));
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class MyArrayListTest {
 		mylist.addAll(list);
 		mylist.addAll(list);
 		assertThat(mylist.size(), is(12));
-		assertThat(mylist.get(5), is(new Integer(3)));
+		assertThat(mylist.get(5), is(3));
 	}
 
 	/**
@@ -132,7 +132,7 @@ public class MyArrayListTest {
 	 */
 	@Test
 	public void testGet() {
-		assertThat(mylist.get(1), is(new Integer(2)));
+		assertThat(mylist.get(1), is(2));
 	}
 
 	/**
