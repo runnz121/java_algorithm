@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -21,6 +22,7 @@ sample input
  */
 
 public class _dijkstra {
+            // v: 정점 갯수, E : 간선 갯수
     static int V, E, start;
     static ArrayList<ArrayList<Node>> graph;
 
@@ -54,6 +56,7 @@ public class _dijkstra {
             // 문제에서는 유향 그래프에서의 다익스트라 알고리즘(이 조건도 문제에 따라 중요하다!).
             graph.get(s).add(new Node(e, c));
         }
+        System.out.println(graph);
 
         // 다익스트라 알고리즘 초기화
         int[] dist = new int[V + 1]; // 최소 비용을 저장할 배열
@@ -63,7 +66,7 @@ public class _dijkstra {
 
         // 주의점 1. 다익스트라 알고리즘의 최소비용을 기준으로 추출해야 한다. 최대 비용을 기준으로 하는 경우 최악의 경우 지수시간 만큼의 연산을
         // 해야한다!
-        PriorityQueue<Node> q = new PriorityQueue<Node>((o1, o2) -> Integer.compare(o1.cost, o2.cost));
+        PriorityQueue<Node> q = new PriorityQueue<Node>(Comparator.comparingInt(o -> o.cost));
         // 시작 노드에서, 시작 노드로 가는 값이 초기에 가장 짧은 비용을 갖는 노드이다.
         // 즉, 도착 정점은 start, 비용은 0인 노드를 가장 먼저 선택할 것이다.
         q.offer(new Node(start, 0));
