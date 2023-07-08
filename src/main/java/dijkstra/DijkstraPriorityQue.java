@@ -21,7 +21,27 @@ sample input
 3 4 6
  */
 
-public class _dijkstra {
+//         PriorityQueue<PrintData> pq = new PriorityQueue<>(new Comparator<PrintData>() {
+// @Override
+// public int compare(PrintData o1, PrintData o2) {
+//     if (o1.requestTime > o2.requestTime) {
+//     return 1;
+//     }
+//     // 페이지수가 적은 것부터 인쇄
+//     if (o1.pageNum < o2.pageNum) {
+//     return -1;
+//     }
+//     // 페이지 수가 같을 경우 요청시간 먼저 인쇄  인쇄
+//     if (o1.pageNum == o2.pageNum) {
+//     if (o1.requestTime < o2.requestTime) {
+//     return -1;
+//     }
+//     }
+//     return 1;
+//     }
+//     });
+
+public class DijkstraPriorityQue {
             // v: 정점 갯수, E : 간선 갯수
     static int V, E, start;
     static ArrayList<ArrayList<Node>> graph;
