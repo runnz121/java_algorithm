@@ -12,7 +12,10 @@ import java.util.StringTokenizer;
 
 public class _25206 {
 
-    static List<String> lists = new ArrayList<>();
+    // 2차원 리스트로 설정
+    static List<List<String>> lists = new ArrayList<>();
+
+    // 최대 10개까지는 of로 설정 가능
     static Map<String, Double> grade = Map.of(
         "A+",4.5,
         "A0",4.0,
@@ -28,20 +31,33 @@ public class _25206 {
     public static void main(String[] args) throws IOException {
         // 입력값이 존재할 떄까지 받기
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        while (true) {
+        int count = 0;
+        while (count != 20) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            if (!st.hasMoreElements()) {
-                break;
-            }
+            // index 1씩 증가시켜 list로 저장
             String[] stToken = new String[3];
             int idx = 0;
             while (st.hasMoreTokens()) {
                 stToken[idx] = st.nextToken();
                 idx ++;
             }
-            lists.add(Arrays.toString(stToken));
+            List stringList = new ArrayList(Arrays.asList(stToken));
+            lists.add(stringList);
+            count += 1;
         }
-        //
-
+        Double answer = 0.000000;
+        Double totalGrade = 0.0;
+        for (List<String> arr : lists) {
+            String key = arr.get(2);
+            Double gr = Double.valueOf(arr.get(1));
+            if (key.equals("P")) {
+                continue;
+            }
+            Double val = 0.000000;
+            val = grade.get(key);
+            answer += val * gr;
+            totalGrade += gr;
+        }
+        System.out.printf("%.6f", answer/totalGrade);
     }
 }
