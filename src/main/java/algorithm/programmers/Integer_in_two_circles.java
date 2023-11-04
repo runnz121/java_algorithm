@@ -4,8 +4,7 @@ public class Integer_in_two_circles {
 
     public long solution(int r1, int r2) {
 
-
-        return answer;
+        return 1;
     }
 
     public static void main(String[] args) {
