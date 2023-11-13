@@ -46,7 +46,3 @@ fun forFunStep() : Int {
     return step
 }
 
-fun whenFun(dayOfWeek: DayOfWeek) {
-
-
-}
