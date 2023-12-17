@@ -1,8 +1,5 @@
 package algorithmKotlin.leetCode;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class ValidPalindrome {
 
     public boolean isPalindrome(String s) {
