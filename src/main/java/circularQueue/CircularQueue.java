@@ -62,7 +62,6 @@ public class CircularQueue {
     }
 
     public static void main(String[] args) {
-
         // 크기 3지정
         CircularQueue circularQueue = new CircularQueue(3);
         circularQueue.enQueue(1);
