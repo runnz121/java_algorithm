@@ -4,10 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class _1202_priority_que {
+public class _1202_priority_que_sort {
 
-    static long N;
-    static long M;
+    static long N; // 보석 수
+    static long M; // 가방 수
 
     public static void main(String[] args) throws Exception {
 
@@ -16,7 +16,6 @@ public class _1202_priority_que {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        // 가격 기준으로 우선순위 큐 설정
         List<Jewelry> jewelries = new ArrayList<>();
 
         // 보석 정보
@@ -41,7 +40,7 @@ public class _1202_priority_que {
             // 가방 정보 저장
             bags.add(c);
         }
-        // 가방 오름차순
+        // 가방 공간 오름차순
         Collections.sort(bags);
         // 보석 무게 기준 오름차순
         Collections.sort(jewelries);
@@ -53,6 +52,7 @@ public class _1202_priority_que {
         // 가방 완전 탐색
         for (int x = 0; x < M; x++) {
 
+            // 가방 하나마다 보석이 들어가는 상태를 확인
             while(true) {
 
                 if (j >= N) {
@@ -66,6 +66,7 @@ public class _1202_priority_que {
                 }
 
                 pq.add(jw.price);
+
                 j++;
             }
 
@@ -73,6 +74,7 @@ public class _1202_priority_que {
                 answer += Math.abs(pq.poll());
             }
         }
+
         System.out.println(answer);
     }
 
@@ -92,3 +94,16 @@ public class _1202_priority_que {
         }
     }
 }
+
+// 오름 차순 정렬되, 무게가 같을 경우 내림차순 정렬
+//Arrays.sort(jewelries, new Comparator<Jewelry>() {
+//
+//@Override
+//public int compare(Jewelry o1, Jewelry o2) {
+//        if (o1.mass == o2.mass) {
+//        return o2.value - o1.value;
+//        }
+//        return o1.mass - o2.mass;
+//        }
+//
+//        });
