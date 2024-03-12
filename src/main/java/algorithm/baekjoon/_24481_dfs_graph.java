@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class _24481_dfs {
+public class _24481_dfs_graph {
 
     static int N;
     static int M;
