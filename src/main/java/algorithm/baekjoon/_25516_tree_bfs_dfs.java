@@ -3,11 +3,14 @@ package algorithm.baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+/**
+ * 양방한 간선 조건이 아니라서, 체크 배열도, 서로 그래프에 추가해줄 필요가 없다 24481 참고
+ *
+ */
 public class _25516_tree_bfs_dfs {
 
     static int N;
@@ -34,7 +37,6 @@ public class _25516_tree_bfs_dfs {
             int u = Integer.parseInt(st1.nextToken());
             int v = Integer.parseInt(st1.nextToken());
             tree.get(u).add(v);
-
         }
         String sequence = br.readLine();
         String[] nodes = sequence.split(" ");

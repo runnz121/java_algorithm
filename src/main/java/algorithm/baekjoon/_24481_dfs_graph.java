@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
+/**
+ * 양방향 간선이라서 체크 배열, 서로 그래프 참조함 _25516 참고
+ *
+ */
 public class _24481_dfs_graph {
 
     static int N;
