@@ -2,9 +2,8 @@ package algorithm.baekjoon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
-public class _20529 {
+public class _20529_bfs_pigeonHole {
 
     static int N;
 

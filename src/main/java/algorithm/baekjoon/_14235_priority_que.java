@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-public class _14235 {
+public class _14235_priority_que {
 
     public static void main(String[] args) throws Exception{
 
