@@ -30,6 +30,7 @@ public class _15656_backTracking {
         List<Integer> printList = new ArrayList<>();
 
         backTracing(printList, lists, 0);
+        // string builder를 마지막 한번에 출력하는걸로 안하면 시간초과뜸
         System.out.println(sb);
     }
 
