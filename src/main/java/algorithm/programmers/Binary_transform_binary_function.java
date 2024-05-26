@@ -1,8 +1,6 @@
 package algorithm.programmers;
 
-import java.util.Arrays;
-
-public class Binary_transform {
+public class Binary_transform_binary_function {
 
     static int count = 0;
     static int deletedZero = 0;
@@ -33,7 +31,7 @@ public class Binary_transform {
     }
 
     public static void main(String[] args) {
-        Binary_transform bf = new Binary_transform();
+        Binary_transform_binary_function bf = new Binary_transform_binary_function();
         String ex = "110010101001";
         bf.solution(ex);
     }
