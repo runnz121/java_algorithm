@@ -14,24 +14,20 @@ public class ReCochat_Robot_bfs {
 		int N = board.length;
 		int M = board[0].length();
 
-		boolean [][] isVisited = new boolean[N][M];
 		int [][] countGraph = new int[N][M];
 		char[][] graph = new char[N][M];
 
 		Current current = null;
 
-		for (int i = 0; i < board.length; i++) {
+		for (int i = 0; i < N; i++) {
 			char[] split = board[i].toCharArray();
-			for (int j = 0; j < split.length; j++) {
+			for (int j = 0; j < M; j++) {
 				graph[i][j] = split[j];
-				// 장애물
-				if (split[j] == 'D') {
-					isVisited[i][j] = true;
-				}
 				// 로봇 시작위치
 				if (split[j] == 'R') {
 					current = new Current(i, j);
-					isVisited[i][j] = true;
+					// 시작 위치는 + 1 해줌
+					countGraph[i][j] = 1;
 				}
 			}
 		}
@@ -45,31 +41,34 @@ public class ReCochat_Robot_bfs {
 			int a = pop.x;
 			int b = pop.y;
 
+			// 목적지 도착인 경우
+			if (graph[a][b] == 'G') {
+				answer = countGraph[a][b] - 1;
+				break;
+			}
+
 			for (int k = 0; k < 4; k++) {
 				int nx = a + dx[k];
 				int ny = b + dy[k];
-
-				// 범위 벗어 나는 경우
-				if (0 > nx || 0 > ny || nx >= N || ny >= M) {
-					continue;
+				// 최대 지점 이동 (증감 기준으로 끝까지 확인)
+				while (true) {
+					// 범위 안인 경우 + 장애물 아닌 경우
+					if (0 <= nx && nx < N && 0 <= ny && ny < M && graph[nx][ny] != 'D') {
+						nx += dx[k];
+						ny += dy[k];
+					} else {
+						nx -= dx[k];
+						ny -= dy[k];
+						break;
+					}
 				}
-				// 방문 했는지 확인
-				if (isVisited[nx][ny]) {
-					continue;
+				if (countGraph[nx][ny] == 0) {
+					countGraph[nx][ny] = countGraph[a][b] + 1;
+					Current update = new Current(nx, ny);
+					que.offer(update);
 				}
-				// 목적지
-				if (graph[nx][ny] == 'G') {
-					System.out.println(countGraph[a][b]);
-					return countGraph[a][b];
-				}
-
-				Current update = new Current(nx, ny);
-				que.offer(update);
-				isVisited[nx][ny] = true;
-				countGraph[nx][ny] = countGraph[a][b] + 1;
 			}
 		}
-
 		return answer;
 	}
 
