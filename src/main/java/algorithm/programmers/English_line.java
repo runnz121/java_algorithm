@@ -5,30 +5,54 @@ import java.util.*;
 public class English_line {
 
     public int[] solution(int n, String[] words) {
-        int[] answer = {};
+        int[] answer = new int[2];
 
-        Map<Integer, List<String>> map = new HashMap<>();
+        int turn = 2; // 턴을 나타내는 변수 (초기값은 2부터 시작)
+        int round = 1; // 라운드를 나타내는 변수 (초기값은 1부터 시작)
+        String previous = words[0]; // 이전 단어를 저장할 변수
 
-        for (int k = 0; k < n; k++) {
-            map.put(k + 1, new ArrayList<>());
-        }
+        // 이미 나온 단어를 체크하는 리스트
+        List<String> check = new ArrayList<>();
+        check.add(previous); // 첫 단어 추가
 
-        for (int i = 0; i < words.length; i++) {
-            int idx = (i % n) + 1;
+        // 끝말잇기 시작
+        for (int i = 1; i < words.length; i++) {
+            String current = words[i]; // 현재 단어
 
-            for (int k = 1; k <= n; k++) {
-                if (map.get(k)!= null && map.get(k).contains(words[i]) ||
-                words[i].split("")[words[i].length() - 1].equals(words[i - 1].split("")[0])) {
-
-                    System.out.println(Arrays.toString(new int[]{idx, (i % n) + 1}));
-                    return new int[]{idx, (i % n) + 1};
-                }
+            // 단어의 길이가 1 이하이면 끝냄
+            if (current.length() <= 1) {
+                break;
             }
 
-            List<String> theList = map.get(idx);
-            theList.add(words[i]);
+            // 이미 나온 단어라면 끝냄
+            if (check.contains(current)) {
+                break;
+            }
+
+            // 이전 단어의 끝과 현재 단어의 시작이 다르면 끝냄
+            if (previous.charAt(previous.length() - 1) != current.charAt(0)) {
+                break;
+            }
+
+            turn++;
+            previous = current;
+            check.add(previous);
+
+            if (turn > n) {
+                turn = 1;
+                round++;
+            }
+
+            if (i == words.length - 1) {
+                turn = 0;
+                round = 0;
+            }
         }
-        return new int[]{0, 0};
+
+        answer[0] = turn;
+        answer[1] = round;
+
+        return answer;
     }
 
     public static void main(String[] args) {
