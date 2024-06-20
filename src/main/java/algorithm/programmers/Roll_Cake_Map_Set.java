@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 // https://school.programmers.co.kr/learn/courses/30/lessons/132265
-public class Roll_Cake {
+public class Roll_Cake_Map_Set {
 
     public int solution(int[] topping) {
         int answer = 0;
@@ -36,7 +36,7 @@ public class Roll_Cake {
     }
 
     public static void main(String[] args) {
-        Roll_Cake rc = new Roll_Cake();
+        Roll_Cake_Map_Set rc = new Roll_Cake_Map_Set();
         int[] inputs = {1, 2, 1, 3, 1, 4, 1, 2};
         rc.solution(inputs);
     }
