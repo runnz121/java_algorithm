@@ -3,6 +3,7 @@ package algorithm.programmers;
 import java.util.HashSet;
 import java.util.Set;
 
+// 시간초과가 난다면 boolean 배열로 바꿔보자 ..
 // https://school.programmers.co.kr/learn/courses/30/lessons/17679
 public class Friends_4_blocks {
 
@@ -68,6 +69,7 @@ public class Friends_4_blocks {
                 for (int x1 = 0; x1 < n; x1++) {
 
                     if (newBoard[y1][x1].equals("-")) {
+                        // "-" 가 아닌 것을 찾은 후 "-"와 바꿔준다
                         for (int k = y1; k >= 0; k--) {
                             if (newBoard[k][x1].equals("-")) {
                                 continue;
@@ -85,7 +87,9 @@ public class Friends_4_blocks {
 
     public static void main(String[] args) {
         Friends_4_blocks f4b = new Friends_4_blocks();
-        String[] inputs = {"CCBDE", "AAADE", "AAABF", "CCBBF"};
-        f4b.solution(4, 5, inputs);
+        String [] inputs1 = {"TTTANT", "RRFACC", "RRRFCC", "TRRRAA", "TTMMMF", "TMMTTJ"}; // 6, 6
+        String[] inputs = {"CCBDE", "AAADE", "AAABF", "CCBBF"}; // 4, 5
+//        f4b.solution(4, 5, inputs);
+        f4b.solution(6, 6, inputs1);
     }
 }
