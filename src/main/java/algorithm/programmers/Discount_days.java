@@ -16,7 +16,7 @@ public class Discount_days {
         }
         //
         for (int idx = 0; idx < discount.length - totalCnt; idx++) {
-            for (int x = ; x < totalCnt; x++) {
+            for (int x = idx; x < totalCnt; x++) {
 
             }
         }
