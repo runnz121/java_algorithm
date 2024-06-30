@@ -1,26 +1,35 @@
 package algorithm.programmers;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/131127
 public class Discount_days {
 
     public int solution(String[] want, int[] number, String[] discount) {
         int answer = 0;
 
-        int totalCnt = 0;
-        Map<String, Integer> map = new HashMap<>();
-        for (int i = 0; i < want.length; i++) {
-            map.put(want[i], number[i]);
-            totalCnt += number[i];
-        }
-        //
-        for (int idx = 0; idx < discount.length - totalCnt; idx++) {
-            for (int x = idx; x < totalCnt; x++) {
+        List<String> wants = new ArrayList<>();
 
+        for (int i = 0; i < want.length; i++) {
+            while (number[i]-- > 0) {
+                wants.add(want[i]);
             }
         }
 
+        for (int i = 0; i < discount.length - 10 + 1; i++) {
+            List<String> buys = new ArrayList<>(wants);
+
+            for (int j = i; j < 10 + i; j++) {
+                if (!buys.contains(discount[j])) {
+                    continue;
+                }
+                if (buys.contains(discount[j])) {
+                    buys.remove(discount[j]);
+                }
+            }
+            answer += buys.size() == 0 ? 1 : 0;
+        }
         return answer;
     }
 
