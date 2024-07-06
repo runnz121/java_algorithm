@@ -1,9 +1,10 @@
 package algorithm.programmers;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.PriorityQueue;
+
+// https://school.programmers.co.kr/learn/courses/30/lessons/12987
 public class Number_game_sort {
 
     public int solution(int[] A, int[] B) {
