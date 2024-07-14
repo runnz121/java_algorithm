@@ -3,6 +3,7 @@ package algorithm.programmers;
 import java.util.Deque;
 import java.util.LinkedList;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/42583?language=java
 public class Cross_truck_stack_que {
 
     public int solution(int bridge_length, int weight, int[] truck_weights) {
