@@ -1,5 +1,6 @@
 package algorithm.programmers;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/68645
 public class Triangle_snail {
     public int[] solution(int n) {
         // 전체 길이
