@@ -4,7 +4,7 @@ package algorithm.programmers;
 
 // 처음 스티커를 때고 안때고를 기준으로 분기하여 dp를 처리
 // dp 변수를 공유함으로 최대값을 재 비교하여 반환
-public class Collect_sticker {
+public class Collect_sticker_DP {
 
     public int solution(int sticker[]) {
         int answer = 0;
@@ -32,7 +32,7 @@ public class Collect_sticker {
     }
 
     public static void main(String[] args) {
-        Collect_sticker cs = new Collect_sticker();
+        Collect_sticker_DP cs = new Collect_sticker_DP();
         int[] inputs = {14, 6, 5, 11, 3, 9, 2, 10};
         cs.solution(inputs);
     }
