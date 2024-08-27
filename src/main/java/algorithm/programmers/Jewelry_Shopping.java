@@ -30,6 +30,8 @@ public class Jewelry_Shopping {
             }
         }
 
+
+        System.out.println(Arrays.toString(answer));
         return answer;
     }
 
