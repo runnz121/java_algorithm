@@ -75,6 +75,7 @@ public class DijkstraPriorityQue {
             int c = Integer.parseInt(st.nextToken());
             // 문제에서는 유향 그래프에서의 다익스트라 알고리즘(이 조건도 문제에 따라 중요하다!).
             graph.get(s).add(new Node(e, c));
+            graph.get(e).add(new Node(s, c));
         }
         System.out.println(graph);
 

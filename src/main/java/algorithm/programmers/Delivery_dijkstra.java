@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class Delivery_dikjkstra {
+// https://school.programmers.co.kr/learn/courses/30/lessons/12978?language=java
+public class Delivery_dijkstra {
 
     static ArrayList<ArrayList<Node>> graph;
 
@@ -83,7 +84,7 @@ public class Delivery_dikjkstra {
     }
 
     public static void main(String[] args) {
-        Delivery_dikjkstra d = new Delivery_dikjkstra();
+        Delivery_dijkstra d = new Delivery_dijkstra();
         int n = 5;
         int k = 3;
         int[][] road = {{1,2,1},{2,3,3},{5,2,2},{1,4,2},{5,3,1},{5,4,2}};
