@@ -28,6 +28,7 @@ public class _2042_segment_tree {
         }
     }
 
+    // 특정 인덱스의 값을 주어진 value 로 바꿈
     static void update(long[] arrayA,
                        long[] tree,
                        int node,
