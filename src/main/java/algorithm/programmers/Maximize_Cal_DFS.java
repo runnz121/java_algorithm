@@ -3,7 +3,7 @@ package algorithm.programmers;
 import java.util.*;
 
 // https://school.programmers.co.kr/learn/courses/30/lessons/67257
-public class Maximize_Cal {
+public class Maximize_Cal_DFS {
 
     static long MAX = 0;
     static List<Long> numList = new ArrayList<>();
@@ -35,6 +35,7 @@ public class Maximize_Cal {
                 optSet.add(c);
                 optList.add(c);
                 numList.add(Long.valueOf(numberStr.toString()));
+                // 5,0 -> 다음 숫자 받기 위해 초기화
                 numberStr = new StringBuilder();
             } else {
                 numberStr.append(c);
@@ -90,19 +91,17 @@ public class Maximize_Cal {
     }
 
     private static Long calcOpt(long a, long b, char opt) {
-        long res = 0;
         if (opt == '+') {
-            res = a + b;
-        } else if (opt == '-') {
-            res = a - b;
-        } else {
-            res = a * b;
+            return a + b;
         }
-        return res;
+        if (opt == '-') {
+            return a - b;
+        }
+        return a * b;
     }
 
     public static void main(String[] args) {
-        Maximize_Cal mc = new Maximize_Cal();
+        Maximize_Cal_DFS mc = new Maximize_Cal_DFS();
         long solution = mc.solution("50*6-3*2");
         System.out.println(solution);
     }
