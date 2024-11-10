@@ -2,6 +2,7 @@ package algorithm.programmers;
 
 import java.util.*;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/138476
 public class Choose_tangerines {
 
     public int solution(int k, int[] tangerine) {

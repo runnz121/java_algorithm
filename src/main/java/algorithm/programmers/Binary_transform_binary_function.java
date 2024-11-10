@@ -1,5 +1,6 @@
 package algorithm.programmers;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/70129
 public class Binary_transform_binary_function {
 
     static int count = 0;

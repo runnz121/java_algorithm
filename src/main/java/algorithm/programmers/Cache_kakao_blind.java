@@ -3,6 +3,7 @@ package algorithm.programmers;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/17680
 public class Cache_kakao_blind {
 
     public int solution(int cacheSize, String[] cities) {
