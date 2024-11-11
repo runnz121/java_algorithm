@@ -6,7 +6,7 @@ package algorithm.programmers;
 // dp 변수를 공유함으로 최대값을 재 비교하여 반환
 public class Collect_sticker_DP {
 
-    public int solution(int sticker[]) {
+    public int solution(int[] sticker) {
         int answer = 0;
         int[] dp = new int[sticker.length];
 
@@ -16,6 +16,7 @@ public class Collect_sticker_DP {
         dp[0] = sticker[0];
         dp[1] = dp[0];
         for (int i = 2; i < sticker.length; i++) {
+            // 원형이면서 땐 스티거 앞/뒤 임으로 i - 2 해줌
             dp[i] = Math.max(dp[i - 2] + sticker[i], dp[i - 1]);
         }
         answer = dp[sticker.length - 2];
