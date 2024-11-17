@@ -33,11 +33,39 @@ public class MajorityElement {
 		return -1;
 	}
 
+	// divide and conquer
+	public int majorityElement2(int[] nums) {
+		return divideAndConquer(0, nums.length - 1, nums);
+	}
+
+	public int divideAndConquer(int left,
+								int right,
+								int[] nums) {
+		if (left == right) {
+			return nums[left];
+		}
+
+		int mid = left + (right - left) / 2;
+		int a = divideAndConquer(left, mid, nums);
+		int b = divideAndConquer(mid + 1, right, nums);
+
+		int countA = 0;
+
+		for (int i = left; i <= right; i++) {
+			if (nums[i] == a) {
+				countA++;
+			}
+		}
+		// a 의 갯수를 샌 값이 과반수가 넘으면 a 값을 리턴 그렇지 않으면 b를 리턴
+		return countA > (right - left + 1) / 2 ? a : b;
+	}
+
 
 	public static void main(String[] args) {
 		MajorityElement mj = new MajorityElement();
 		int[] sample = {2,2,1,1,1,2,2};
-		int res = mj.majorityElement1(sample);
+//		int res = mj.majorityElement1(sample);
+		int res = mj.majorityElement2(sample);
 		System.out.println(res);
 	}
 }
