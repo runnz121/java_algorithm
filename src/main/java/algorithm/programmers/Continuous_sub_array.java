@@ -3,6 +3,7 @@ package algorithm.programmers;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// https://school.programmers.co.kr/learn/courses/30/lessons/131701
 public class Continuous_sub_array {
 
     public int solution(int[] elements) {

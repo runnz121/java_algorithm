@@ -33,13 +33,15 @@ public class Connect_Island_mst_kruskal {
     int find (int a) {
         if (parent[a] == a) return a;
         // 자기가 속해있는 부모 노드를 찾아서 반환한다.
-        return parent[a] = find(parent[a]);
+        return find(parent[a]);
     }
 
     void union(int a, int b) {
         a = find(a);
         b = find(b);
-        if (a != b) parent[b] = a;
+        if (a != b) {
+            parent[b] = a;
+        }
     }
 
     public static void main(String[] args) {
