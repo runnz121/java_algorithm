@@ -8,15 +8,8 @@ public class Cross_truck_stack_que {
 
     public int solution(int bridge_length, int weight, int[] truck_weights) {
         int answer = 0;
+
         Deque<Integer> que = new LinkedList<>();
-
-        if (bridge_length == 1) {
-            return truck_weights.length + 1;
-        }
-
-        if (truck_weights.length == 1) {
-            return bridge_length + 1;
-        }
 
         for(int i = 0; i < bridge_length; i++){
             que.offer(0);
