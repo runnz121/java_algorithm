@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 public class _15666_back_tracking {
 
     static int n, m;
-    static boolean[] visited;
     static List<Integer> arrays;
     static int[] ans;
     static StringBuilder sb = new StringBuilder();
@@ -22,7 +21,6 @@ public class _15666_back_tracking {
         n = Integer.parseInt(split[0]);
         m = Integer.parseInt(split[1]);
 
-        visited = new boolean[n];
         ans = new int[m];
 
         String[] lists = br.readLine().split(" ");
@@ -44,7 +42,7 @@ public class _15666_back_tracking {
             return;
         }
 
-        // 메서드 안에서 갑 할당시 지역변수로 유지됨
+        // 메서드 안에서 값 할당시 지역변수로 유지됨
         int before = 0;
         for (int idx = start; idx < n; idx++) {
             // 현재 인덱스의 해당하는 값을 할당함
