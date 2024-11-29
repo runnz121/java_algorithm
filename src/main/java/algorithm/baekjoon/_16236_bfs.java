@@ -1,13 +1,20 @@
 package algorithm.baekjoon;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class _16236_bfs {
-
-static int N;
+    static int N;
     static int currentSize;
     static int currentAteFish;
     static int curY, curX;
@@ -44,7 +51,21 @@ static int N;
                 break;
             };
 
+            // 먹으러 갈 수 있는 물고기들 위치를 반환
+            List<Fish> nearestFish = findNearestFish(eatableFishes);
 
+            while (true) {
+
+                
+            }
+
+
+            // 위의 물고기들 중 아무것도 도달 할 수 없으면 종료
+
+            // 해당 물고기를 먹으러 갈 수 있는지 확인
+
+            // 먹으러 갈 수 있다면 상어 위치를 이동
+            checkMoveAble();
 
 
         }
@@ -53,12 +74,29 @@ static int N;
         bw.flush();
     }
 
-    static void checkMoveAble() {
-        boolean[][] visited = new boolean[N][N];
-        Queue<int[]> que = new ArrayDeque<>();
+    static boolean checkMoveAble(Fish fish) {
+        Queue<int[]> que = new LinkedList<>();
+        que.add(new int[] {fish.x, fish.y});
 
+        while (!que.isEmpty()) {
 
+            int[] poll = que.poll();
 
+            for (int i = 0; i < 4; i++) {
+                int nx = poll[0] + dx[i];
+                int ny = poll[1] + dy[i];
+
+                if (nx < 0 || ny < 0 || nx > N - 1 || ny > N - 1) continue;
+
+                if (nx == fish.x && ny == fish.y) return true;
+
+                // 현재 사이즈보다 큰 먹이는 지나갈 수 없다.
+                if (graph[ny][nx] > currentSize) continue;
+
+                que.add(new int[] {nx, ny});
+            }
+        }
+        return false;
     }
 
     // 먹을 수 있는 물고기 있는지 확인 및 물고기 탐색
@@ -77,7 +115,7 @@ static int N;
         }
     }
 
-    static void findNearestFish(List<Fish> eatableFishes) {
+    static List<Fish> findNearestFish(List<Fish> eatableFishes) {
 
         eatableFishes.sort((f1, f2) -> {
             // 1. 거리가 가까운 순서대로 정렬
@@ -92,7 +130,7 @@ static int N;
             return Integer.compare(f1.x, f2.x);
         });
 
-
+        return eatableFishes;
     }
 
     static class Fish {
