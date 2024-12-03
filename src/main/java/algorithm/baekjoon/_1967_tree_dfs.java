@@ -64,7 +64,7 @@ public class _1967_tree_dfs {
         Arrays.fill(DISTANCE, -1);
         DISTANCE[1] = 0;
 
-        // 1. 가장 먼 노드 탐색
+        // 1. 루트 -> 가장 먼 노드 탐색
         dfs(1, 0);
 
         int startNode = findFarthest();
@@ -72,7 +72,7 @@ public class _1967_tree_dfs {
         Arrays.fill(DISTANCE, -1);
         DISTANCE[startNode] = 0;
 
-        // 2. 가장 먼 노드 기준으로 탐색
+        // 2. 가장 먼 노드 -> 가장 먼 노드 탐색 == 최대로 긴 거리 임으로
         dfs(startNode, 0);
 
         ANSWER = Arrays.stream(DISTANCE).max().getAsInt();
