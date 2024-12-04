@@ -13,40 +13,52 @@ import java.util.*;
 
 public class _12738_binary_search {
 
-    static long N;
-    static List<Long> lists;
-    static long maxLength = 0L;
+    static int N;
+    static int[] lists;
+    // 증가하는 수를 담는 리스트
+    static int[] ascLists;
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
         StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Long.parseLong(br.readLine());
+        lists = new int[N];
 
         for (int i = 0; i < N; i++ ) {
-            lists.add(Long.parseLong(st.nextToken()));
+            lists[i] = Integer.parseInt(st.nextToken());
         }
 
-        long left = 0;
-        long right = N - 1;
-
-        while (left < right) {
-            long mid = left + right / 2;
-            long currentTarget = lists.get((int) mid);
-            long length = 1L;
-            for (long k = mid; k < right - mid - 1; k++) {
-                Long data = lists.get((int) k);
-                if (currentTarget < data) {
-                    currentTarget = data;
-                    length += 1;
-                }
-            }
-            maxLength = Math.max(maxLength, length);
-
-            if (length > maxLength) {
-
+        ascLists = new int[N + 1];
+        ascLists[0] = -1_000_000_001;
+        int len = 0;
+        int idx = 0;
+        // 수열의 처음부터 순회
+        for (int i = 0; i < N; i++) {
+            // 수열의 값 > 증가하는 수열의 현재 인덱스의 값 (비교되는 값은 증가하는 수열의 항상 마지막 인덱스이다)
+            if (lists[i] > ascLists[len]) {
+                // 증가하는 수열에 해당 값 추가
+                ascLists[++len] = lists[i];
             } else {
-
+                // 증가하는 수열에서 해당 하는 값이 들어갈 인덱스를 찾는다 (값이 덮어 씌어진다)
+                idx = findIdxByBinarySearch(0, len, lists[i]);
+                // 증가하는 수열에 존재하는 해당 인덱스에 값을 덮어 씌움
+                ascLists[idx] = lists[i];
             }
         }
+        System.out.println(len);
+    }
+
+    // 덮어씌어질 값이 존재하는 인덱스를 찾읍
+    static int findIdxByBinarySearch(int left, int right, int target) {
+        int mid = 0;
+        while (left < right) {
+            mid = (left + right) / 2;
+            if (ascLists[mid] < target) {
+                left = mid + 1;
+            } else {
+                right = mid;
+            }
+        }
+        return right;
     }
 }
