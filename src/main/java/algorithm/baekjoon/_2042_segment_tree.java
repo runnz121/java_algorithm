@@ -3,6 +3,19 @@ package algorithm.baekjoon;
 import java.util.*;
 import java.io.*;
 
+/**
+ * 5 2 2
+ * 1
+ * 2
+ * 3
+ * 4
+ * 5
+ * 1 3 6
+ * 2 2 5
+ * 1 5 2
+ * 2 3 5
+ */
+
 public class _2042_segment_tree {
 
     static int N;
@@ -79,7 +92,6 @@ public class _2042_segment_tree {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
-
         M += K;
 
         arrayA = new long[N];
