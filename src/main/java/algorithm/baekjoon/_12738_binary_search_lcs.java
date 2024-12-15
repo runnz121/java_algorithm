@@ -11,7 +11,7 @@ import java.util.*;
 // -1,000,000,000 ≤ Ai ≤ 1,000,000,000)
 
 
-public class _12738_binary_search {
+public class _12738_binary_search_lcs {
 
     static int N;
     static int[] lists;
