@@ -2,13 +2,7 @@ package algorithm.baekjoon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class _1277_dijkstra {
 
@@ -16,26 +10,17 @@ public class _1277_dijkstra {
     static int W;
     static double M;
     static int[][] map;
-    static int[] dist;
-    static int FACTOR = 100_000;
     static List<Node> nodes = new ArrayList<>();
     static List<List<Integer>> graph = new ArrayList<>();
     static boolean[][] visited;
-    static int factory = 1;
 
     static class Node {
-        int x;
-        int y;
-        int factory;
+        int v;
         int weight;
 
-        Node(int x,
-             int y,
-             int factory,
+        Node(int v,
              int weight) {
-            this.x = x;
-            this.y = y;
-            this.factory = factory;
+            this.v = v;
             this.weight = weight;
         }
     }
@@ -49,53 +34,51 @@ public class _1277_dijkstra {
         M = Double.parseDouble(br.readLine());
 
         map = new int[N + 1][N + 1];
-        dist = new int[N + 1];
         visited = new boolean[N + 1][N + 1];
 
-        for (int x = 0; x < N; x++) {
+        for (int x = 1; x <= N; x++) {
             graph.add(new ArrayList<>());
         }
-        
-        // dist 초기화 필요..?
-        Arrays.fill(dist, Integer.MAX_VALUE);
 
-        for (int i = 0; i < N; i++) {
+        // 발전소 좌표 저장
+        double[] x = new double[N + 1];
+        double[] y = new double[N + 1];
+        for (int i = 1; i <= N; i++) {
             st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
-            nodes.add(new Node(x ,y, factory, 1));
-            factory++;
+            x[i] = Double.parseDouble(st.nextToken());
+            y[i] = Double.parseDouble(st.nextToken());
         }
-
-        // 발전소 순서로 정렬 
-        Collections.sort(nodes, Comparator.comparing(it -> it.factory));
-
-        // to -> from
-        visited[0][0] = true;
 
         for (int k = 0; k < W; k++) {
             st = new StringTokenizer(br.readLine());
             int to = Integer.parseInt(st.nextToken());
             int from = Integer.parseInt(st.nextToken());
 
-            graph.get(to).add(from);
-            graph.get(from).add(to);
-
             visited[to][from] = true;
             visited[from][to] = true;
-            
-            // 기존에 연결되어있는것도 최단거리 초기화 필요한지 확인
-            // dist[to]
-            
         }
 
-        // 마지막 발전소 -- factory == 시작지점 -> 해당 시점의 좌표 기준으로 추가 공장의 좌표가 저장되어있는 노드와 거리를 가중치로 계산 -> dijkstra 기본 알고리즘 태우는걸로 도전해보기
-        for (int idx = factory - 1; idx < nodes.size(); idx++) {
-            
+        for (int i = 1; i <= N; i++) {
+            for (int j = i + 1; j <= N; j++) {
+                double calDist = getDistance(x[i], y[i], x[j], y[j]);
+
+                if (visited[i][j]) {
+
+                }
+            }
         }
-        
+
         
 
         System.out.println(graph);
+    }
+
+    static double getDistance(double x1,
+                              double y1,
+                              double x2,
+                              double y2) {
+        double dx = x1 - x2;
+        double dy = y1 - y2;
+        return Math.sqrt(dx * dx + dy * dy);
     }
 }
