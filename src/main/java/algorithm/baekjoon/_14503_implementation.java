@@ -52,15 +52,7 @@ public class _14503_implementation {
             // 모두 청소 되었을 경우
             if (isAllClean) {
                 // 바라보는 방향 유지한채 뒤로 한칸 후진
-                if (d == 0) { // 북을 보고 있으면
-                    backDirections = 2; // 남쪽으로 이동
-                } else if (d == 1) {
-                    backDirections = 3;
-                } else if (d == 2) {
-                    backDirections = 0;
-                } else {
-                    backDirections = 1;
-                }
+                backDirections = (d + 2) % 4;
 
                 // 바라보는 방향의 뒤쪽이 벽인지 확인
                 boolean isWall = checkWall(r + dx[backDirections], c + dy[backDirections]);
@@ -77,15 +69,7 @@ public class _14503_implementation {
 
             // 청소되지 않은 빈칸이 있는 경우 반시계 방향으로 회전
             else {
-                if (d == 0) {
-                    d = 3;
-                } else if (d == 1) {
-                    d = 0;
-                } else if (d == 2) {
-                    d = 1;
-                } else {
-                    d = 2;
-                }
+                d = (d + 3) % 4;
 
                 // 바라 보는 방향이 청소되지 않은 경우 이동
                 if (map[r + dx[d]][c + dy[d]] == 0) {
