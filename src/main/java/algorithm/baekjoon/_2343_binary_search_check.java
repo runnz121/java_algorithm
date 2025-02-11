@@ -2,12 +2,11 @@ package algorithm.baekjoon;
 
 import java.util.*;
 import java.io.*;
-public class _2343_binary_search {
+public class _2343_binary_search_check {
 
     static int N;
     static int M;
     static List<Integer> lists = new ArrayList<>();
-    static int answer;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,16 +30,14 @@ public class _2343_binary_search {
         while (left <= right) {
 
             int total = 0;
-            int mid = left + right / 2;
-            int count = 1;
+            int mid = (left + right) / 2;
+            int count = 0;
 
             for (int i = 0; i < N; i++) {
-                total += lists.get(i);
                 if (total + lists.get(i) > mid) {
                     total = 0;
-                    count ++ ;
+                    count += 1;
                 }
-
                 total += lists.get(i);
             }
 
@@ -48,7 +45,7 @@ public class _2343_binary_search {
                 count += 1;
             }
 
-            if (count < M) {
+            if (count <= M) {
                 right = mid - 1;
             } else {
                 left = mid + 1;
