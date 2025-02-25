@@ -19,21 +19,17 @@ public class _16400_dp {
         boolean[] isPrime = new boolean[n + 1];
 
         // 에라토스테네스 채
-        for (int i = 2; i <= n; i++) {
-            isPrime[i] = true;
-        }
-
         for (int i = 2; i <= Math.sqrt(n); i++) {
             // 현재 숫자가 소수일 경우 해당 배수 모두 false 처리
-            if (isPrime[i]) {
+            if (isPrime[i] == false) {
                 for (int j = i * i; j <= n; j += i) {
-                    isPrime[j] = false;
+                    isPrime[j] = true;
                 }
             }
         }
 
         for (int k = 2; k <= n; k++) {
-            if (isPrime[k]) {
+            if (isPrime[k] == false) {
                 PRIMES.add(k);
             }
         }
