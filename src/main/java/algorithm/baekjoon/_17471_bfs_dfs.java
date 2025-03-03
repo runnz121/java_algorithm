@@ -2,7 +2,8 @@ package algorithm.baekjoon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class _17471_bfs_dfs {
@@ -39,132 +40,103 @@ public class _17471_bfs_dfs {
             int [] target = new int[value];
 
             for (int k = 1; k <= value; k++) {
-                target[k - 1] = Integer.parseInt(line[k]);
+                target[k - 1] = Integer.parseInt(line[k]) - 1;
             }
 
             dir[i] = target;
         }
 
-        // 전체 구역 다 돌아 -> 하나씩 특정해서 해당 번호를 제외하고 나머지 구역이 모두 이어져 있는지 확인
-        for (int d = 0; d < N; d++) {
+        // 모든 부분집합 고려
+        for (int bit = 1; bit < (1 << N) - 1; bit ++) {
 
-            boolean[] visited = new boolean[N];
-
-            visited[d] = true;
-
-            dfs(d, visited, popul[d]);
-        }
-
-        if (answer == Integer.MAX_VALUE) {
-            System.out.println(-1);
-            return;
-        }
-
-        System.out.println(answer);
-    }
-
-    // 선거구 하나에 대해서 진행
-    static void dfs(int idx,
-                    boolean[] visited,
-                    int sumPeo) {
-
-
-        for (int i = 0; i < dir[idx].length; i++) {
-
-            int next = dir[idx][i] - 1;
-
-            if (visited[next] == false) {
-                visited[next] = true;
-
-                // 갱신되었을 때만 체크하는걸로
-                int targetPeo = popul[next];
-                // 현재 구역 인원
-                int sectionA = sumPeo + targetPeo;
-                // 나머지 구역
-                int sectionB = total - sectionA;
-                // 두 인구의 절대값이 답보다 작은 경우 갱신 및 다 이어져있는지 확인
-                if (Math.abs(sectionA - sectionB) < answer) {
-                    // 다 이어져있으면 답 갱신
-                    if (checkAllLinked(visited) && hasBothGroups(visited)) {
-                        answer = Math.abs(sectionA - sectionB);
-                    }
-                }
-
-                dfs(next, visited, sumPeo + targetPeo);
-                visited[next] = false;
+            // 2개의 선거구가 모두 속해있는지 체크
+            if (checkMask(bit)) {
+                answer = Math.min(answer, getDiffPeople(bit));
             }
         }
+
+        System.out.println(answer == Integer.MAX_VALUE ? - 1 : answer);
     }
 
-    // 두 선거구가 모두 존재하는지 체크
-    static boolean hasBothGroups(boolean[] visited) {
-        boolean groupA = false;
-        boolean groupB = false;
-
-        for (boolean b : visited) {
-            if (b) groupA = true;
-            else groupB = true;
-        }
-        return groupA && groupB;
-    }
-
-    // 두 선거구 연결여부 확인
-    static boolean checkAllLinked(boolean[] visited) {
-        // 그룹 A 체크
-        boolean[] checkVisit = new boolean[N];
+    static boolean checkMask(int bitMask) {
+        boolean[] visitedA = new boolean[N];
         int startA = -1;
         for (int i = 0; i < N; i++) {
-            if (visited[i]) {
+            if ((bitMask & (1 << i)) != 0) {
                 startA = i;
                 break;
             }
         }
-        if (startA != -1) {
-            dfsCheck(startA, visited, checkVisit);
-            for (int i = 0; i < N; i++) {
-                if (visited[i] && !checkVisit[i])
-                    return false;
+
+        if (startA == -1) {
+            return false;
+        }
+
+        bfs(startA, bitMask, visitedA, true);
+        for (int i = 0; i < N; i++) {
+            if ((bitMask & (1 << i)) != 0 && !visitedA[i]) {
+                return false;
             }
         }
-        // 그룹 B 체크
-        boolean[] checkVisitB = new boolean[N];
+
+        boolean[] visitedB = new boolean[N];
         int startB = -1;
         for (int i = 0; i < N; i++) {
-            if (!visited[i]) {
+            if ((bitMask & (1 << i)) == 0) {
                 startB = i;
                 break;
             }
         }
-        if (startB != -1) {
-            dfsCheck(startB, invertVisited(visited), checkVisitB);
-            for (int i = 0; i < N; i++) {
-                if (!visited[i] && !checkVisitB[i])
-                    return false;
+
+        if (startB == -1) {
+            return false;
+        }
+
+        bfs(startB, bitMask, visitedB, false);
+        for (int i = 0; i < N; i++) {
+            if ((bitMask & (1 << i)) == 0 && !visitedB[i]) {
+                return false;
             }
         }
         return true;
     }
 
-    static void dfsCheck(int idx, boolean[] group, boolean[] toCheckVisit) {
+    static void bfs(int start,
+                    int mask,
+                    boolean[] visited,
+                    boolean isA) {
 
-        toCheckVisit[idx] = true;
+        Queue<Integer> que = new LinkedList<>();
+        visited[start] = true;
+        que.offer(start);
 
-        for (int i = 0; i < dir[idx].length; i++) {
-            int next = dir[idx][i] - 1;
+        while (que.isEmpty() == false) {
+            int cur = que.poll();
+            for (int next : dir[cur]) {
+                if (visited[next] == false) {
 
-            if (toCheckVisit[next] == false) {
-                toCheckVisit[next] = true;
-                dfsCheck(next, group, toCheckVisit);
+                    if (isA && (mask & (1 << next)) != 0) {
+                        visited[next] = true;
+                        que.offer(next);
+                    }
+
+                    if (isA == false && (mask & (1 << next)) == 0) {
+                        visited[next] = true;
+                        que.offer(next);
+                    }
+                }
             }
         }
     }
 
-    // visited 배열의 반대(나머지 그룹) 생성
-    static boolean[] invertVisited(boolean[] visited) {
-        boolean[] inv = new boolean[N];
-        for (int i = 0; i < N; i++) {
-            inv[i] = !visited[i];
+    static int getDiffPeople(int mask) {
+        int sumA = 0;
+        for (int i = 0; i< N; i++) {
+            if ((mask & (1 << i)) != 0) {
+                sumA += popul[i];
+            }
         }
-        return inv;
+        int sumB = total - sumA;
+        return Math.abs(sumA - sumB);
     }
 }
