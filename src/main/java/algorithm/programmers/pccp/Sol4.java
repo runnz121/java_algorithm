@@ -1,14 +1,28 @@
 package algorithm.programmers.pccp;
 
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Sol4 {
 
     public long[] solution(int[][] program) {
         long[] answer = {};
 
-        PriorityQueue pq = new PriorityQueue();
+        Arrays.sort(program, Comparator.comparingInt(a -> a[1]));
 
+        PriorityQueue<int[]> pq = new PriorityQueue<>((a, b) -> {
+           if (a[0] != b[0]) {
+               return Integer.compare(a[0], b[0]);
+            } else {
+               return Integer.compare(a[1], b[1]);
+           }
+        });
+
+        int time = 0;
+        int i = 0;
+        int n = program.length;
 
 
         return answer;

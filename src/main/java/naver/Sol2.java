@@ -48,8 +48,8 @@ import java.util.*;
  that, given menu array of length N and an order array of length M, returns the minimum amount of money you need to pay when using one of the discounts the pizzeria offers (or not using discounts, if none of them is applicable to the given order).
 
  Examples:
- 1. Buy 3 the cheapse on is free
- When you order contains at least three pizzas (not necessarily different). you can choose to not pay for a single cheapse pizza in the whole order. You can use this discount a tmost once per order and you cannot split your order.
+ 1. Buy 3 the cheapest one is free
+ When you order contains at least three pizzas (not necessarily different). you can choose to not pay for a single cheapest pizza in the whole order. You can use this discount at most once per order and you cannot split your order.
 
  For example for:
  menu = [
@@ -68,7 +68,9 @@ import java.util.*;
  Notice that larger pizza can cost less than smaller pizzas.
 
  2. Buy 5 for 100
- When you order contains at least five pizzas with the same name. you can choose five of them to cost 100 in total. As with the previous discount, you can use one at most once per order and you cannot split your order.
+ When you order contains at least five pizzas with the same name.
+ you can choose five of them to cost 100 in total.
+ As with the previous discount, you can use one at most once per order and you cannot split your order.
 
  For example, for:
  menu = [
@@ -86,12 +88,17 @@ import java.util.*;
  OrderItem(name="capricciosa", size="Small", quantity=7),
  ]
 
- your function should return 900, because you can choose to pay 100 for one "Medium" and four "Small" margherita and pay the normal price for everything else.
+ your function should return 900,
+ because you can choose to pay 100 for one "Medium" and four "Small" margherita and pay the normal price for everything else.
 
- Notice that you could use the discount on five greek pizzas or on five capricciosa but it would result in higher total cost. Similary. you could use the "Buy 3, the chepeast one is free discount, but it would also result in higher total cost.
+ Notice that you could use the discount on five greek pizzas or on five capricciosa but it would result in higher total cost.
+ Similary. you could use the "Buy 3, the cheapest one is free discount, but it would also result in higher total cost.
 
  3. For Every Large pizza, get a free Small One
- When your order contains a "Large" and a "Small" pizza with the same name, you can get the "Small" one for free. You can use this discount as many times a syou want, provided the conditions are met and you are not using any other discount.
+ When your order contains a "Large" and a "Small" pizza with the same name,
+ you can get the "Small" one for free. You can use this discount as many times a you want,
+ provided the conditions are met and you are not using any other discount.
+
  For Exampls for:
  menu = [
  Pizza(name="margherita", price_S=7, price_M=8, price_L=10),
@@ -109,11 +116,13 @@ import java.util.*;
  OrderItem(name="capricciosa", size="Medium", quantity=1)
  ]
 
- your function should return 117, because you can choose not to pay for one "Smalll" margherita and two "Small" capricciosa.
+ your function should return 117, because you can choose not to pay for one "Small" margherita and two "Small" capricciosa.
  Notice that you still have to pay for three "Small" capricciosa because there are not enough "Large" ones to pair them with.
 
  4. Buy 3 Large, pay for 3 Medium
- when your order contains at least three "Large" pizzas you can choose exactly three and pay for them as if they were "Medium" pizzas with same names. You can use this discount at most once per order and you cannot split your order.
+ when your order contains at least three "Large" pizzas
+ you can choose exactly three and pay for them as if they were "Medium" pizzas with same names.
+ You can use this discount at most once per order and you cannot split your order.
 
  For Exampls for:
  menu = [
