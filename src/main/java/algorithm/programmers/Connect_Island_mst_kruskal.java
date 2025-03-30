@@ -3,6 +3,13 @@ package algorithm.programmers;
 import java.util.Arrays;
 import java.util.Comparator;
 
+/**
+ * 크루스칼
+ * 1. 모든 간선 기준 가중치 오름차순 정렬
+ * 2. union-find 로 현재 노드가 속해있는 부모노드를 갱신
+ * 3. 가중치 계산 (이미 가중치 기준 오름차순이라서 최소 가중치를 보장)
+ *
+ */
 // https://school.programmers.co.kr/learn/courses/30/lessons/42861
 public class Connect_Island_mst_kruskal {
 
@@ -33,7 +40,7 @@ public class Connect_Island_mst_kruskal {
     int find (int a) {
         if (parent[a] == a) return a;
         // 자기가 속해있는 부모 노드를 찾아서 반환한다.
-        return find(parent[a]);
+        return parent[a] = find(parent[a]); // 배열 갱신 및 해당 노드의 부모노드 값 반환 
     }
 
     void union(int a, int b) {
