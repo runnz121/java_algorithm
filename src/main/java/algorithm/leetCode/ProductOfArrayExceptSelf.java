@@ -6,22 +6,22 @@ public class ProductOfArrayExceptSelf {
 
     public int[] productExceptSelf(int[] nums) {
 
-        int[] answers = new int[nums.length];
+        int size = nums.length;
 
-        // left
-        answers[0] = 1;
-        for (int left = 1; left < nums.length; left++) {
-            answers[left] = answers[left - 1] * nums[left - 1];
+        int[] answer = new int[size];
+
+        answer[0] = 1;
+        for (int i = 1 ; i < size; i++) {
+            answer[i] = answer[i - 1] * nums[i - 1];
         }
 
-        // right
-        int rightx = 1;
-        for (int right = nums.length - 1; right >= 0; right--) {
-            answers[right] = answers[right] * rightx;
-            rightx *= nums[right];
+        int right = 1;
+        for (int x = size - 1; x >= 0; x--) {
+            answer[x] = answer[x] * right;
+            right *= nums[x];
         }
 
-        return answers;
+        return answer;
     }
 
     public static void main(String[] args) {
