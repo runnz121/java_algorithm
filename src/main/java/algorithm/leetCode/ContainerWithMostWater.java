@@ -1,32 +1,35 @@
 package algorithm.leetCode;
 
+/**
+ * 투 포인터 기준으로
+ *
+ */
 public class ContainerWithMostWater {
 
     public int maxArea(int[] height) {
 
+        int maxArea = 0;
         int left = 0;
         int right = height.length - 1;
-        int maxArea = 0;
 
         while (left < right) {
 
-            // 1. 폭 계산
-            int width = right - left;
+            // 넓이
+            int x = right - left;
 
-            // 2. 높이(min) 계산
+            // 더 낮은 높이 기준으로 계싼된다 -- 1.
             int h = Math.min(height[left], height[right]);
 
-            // 3. 면적 계산·갱신
-            maxArea = Math.max(maxArea, h * width);
+            // 현재 넓이 비교해서 더 큰 걸로 갱신
+            maxArea= Math.max(maxArea, h * x);
 
-            // 4 “더 낮은 쪽” 포인터를 안쪽으로 한 칸 이동 -> 높은쪽을 줄이면 넓이는 작아짐으로 작은쪽을 줄여서 갱신한 최대값을 반환
+            // 투 포인터 기준으로 낮은쪽을 이동시킴 -> 넓이 계산은 더 낮은 높이 기준으로 계산됨(..1 참고)으로 폭은 줄어들지만 높이가 높아질 가능성이 있음
             if (height[left] < height[right]) {
                 left ++;
             } else {
                 right --;
             }
         }
-
         return maxArea;
     }
 
