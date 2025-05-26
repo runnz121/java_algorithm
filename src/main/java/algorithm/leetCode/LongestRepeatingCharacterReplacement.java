@@ -4,7 +4,7 @@ package algorithm.leetCode;
  * 1. 알파벳 고정 길이를 둔다.
  * 2. left, right 인덱스를 둔다
  * 3. 슬라이딩 윈도우 (right 를 증가) 통해 k 만큼 숫자를 바꿀 수 있는지 확인
- *
+ * https://www.algodale.com/problems/longest-repeating-character-replacement/
  */
 public class LongestRepeatingCharacterReplacement {
 
