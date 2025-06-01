@@ -33,4 +33,17 @@ class Sol1 {
         // 소수점 이하는 버림
         return interest.toInt()
     }
+
+    fun cal2 (
+        executedDate: Date,
+        maturityDate: Date,
+        loanAmount: Int,
+        interestRate: Double
+    ): Int {
+
+        val perDay = 1000L * 60 * 60 * 24
+        val days = ((maturityDate.time - executedDate.time) / perDay).toInt()
+        val interest = loanAmount.toDouble() * (interestRate / 100.0) * (days.toDouble() / 365.0)
+        return interest.toInt()
+    }
 }
