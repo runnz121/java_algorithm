@@ -16,7 +16,7 @@ fun main() {
     var maxN = 0
     val sb = StringBuilder()
 
-    // T 만큼 반복
+    // T 만큼 반복 -> 배열 하나로 갱신에서 출력하지 않으면 시간초과 발생
     repeat(T) { i ->
         val N = br.readLine().toInt()
         allInputs[i] = N
@@ -34,14 +34,15 @@ fun main() {
         }
     }
 
-    println(f.contentToString())
+//    println(f.contentToString())
 
+    // 구간 누적합을 담을 배열
     val g = LongArray(maxN + 1)
     for (i in 1..maxN) {
         g[i] = g[i - 1] + f[i]
     }
 
-    println(g.contentToString())
+//    println(g.contentToString())
 
     for (n in allInputs) {
         sb.append(g[n]).append('\n')
