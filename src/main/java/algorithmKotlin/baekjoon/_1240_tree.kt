@@ -18,6 +18,14 @@ fun main() {
     var N = st.nextToken().toInt()
 
     // 트리 선언
+    /**
+     * 자바는 Pair 가 없음으로 객체로 생성해야된다
+     *  List<Pair>[] tree = new ArrayList[M + 1];
+     *  for (int i = 0; i <= M; i++) {
+     *      tree[i] = new ArrayList<>();
+     *   }
+     *
+     */
     val tree = Array(M + 1) {
         mutableListOf<Pair<Int, Int>>()
     }
