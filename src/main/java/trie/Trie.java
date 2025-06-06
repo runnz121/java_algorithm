@@ -39,7 +39,7 @@ public class Trie {
             }
             cur = cur.children[c - 'a'];
         }
-        return cur.word = true;
+        return cur.word;
     }
 
     // 문자열로 시작 단어 존재 여부 판별
