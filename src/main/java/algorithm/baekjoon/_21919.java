@@ -38,12 +38,12 @@ public class _21919 {
         return true;
     }
 
-    // 최대공약수
+    // 최소공베수
     public static long lcm(long a, long b) {
         return a / gcd(a, b) * b;
     }
 
-    // 최소공배수 (반복문)
+    // 최대공약수 (반복문)
     public static long gcd(long a, long b) {
         if (b == 0) return a;
         return gcd(b, a % b);
