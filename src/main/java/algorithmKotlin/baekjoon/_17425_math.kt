@@ -6,47 +6,52 @@ import java.io.InputStreamReader
 //https://www.acmicpc.net/problem/17425
 //  1부터 N까지 모든 수의 ‘약수의 합’을 구해서 다시 모두 더하라”
 class _17425_math {
-}
 
-fun main() {
+    companion object {
 
-    val br = BufferedReader(InputStreamReader(System.`in`))
-    val T = br.readLine().toInt()
-    val allInputs = IntArray(T)
-    var maxN = 0
-    val sb = StringBuilder()
+        @JvmStatic
+        fun main(args: Array<String>) {
 
-    // T 만큼 반복 -> 배열 하나로 갱신에서 출력하지 않으면 시간초과 발생
-    repeat(T) { i ->
-        val N = br.readLine().toInt()
-        allInputs[i] = N
-        // 배열의 최대값 갱신
-        maxN = maxOf(N, maxN)
-    }
+            val br = BufferedReader(InputStreamReader(System.`in`))
+            val T = br.readLine().toInt()
+            val allInputs = IntArray(T)
+            var maxN = 0
+            val sb = StringBuilder()
 
-    // 약수의 합을 담을 배열
-    val f = LongArray(maxN + 1)
-    // 약수라 가정하고 d를 추출
-    for (d in 1..maxN) {
-        // d 의 배수만큼 넘기면서 (step) 누적합 진행 및 배열 갱신
-        for (m in d..maxN step d) {
-            f[m] += d.toLong()
-        }
-    }
+            // T 만큼 반복 -> 배열 하나로 갱신에서 출력하지 않으면 시간초과 발생
+            repeat(T) { i ->
+                val N = br.readLine().toInt()
+                allInputs[i] = N
+                // 배열의 최대값 갱신
+                maxN = maxOf(N, maxN)
+            }
+
+            // 약수의 합을 담을 배열
+            val f = LongArray(maxN + 1)
+            // 약수라 가정하고 d를 추출
+            for (d in 1..maxN) {
+                // d 의 배수만큼 넘기면서 (step) 누적합 진행 및 배열 갱신
+                for (m in d..maxN step d) {
+                    f[m] += d.toLong()
+                }
+            }
 
 //    println(f.contentToString())
 
-    // 구간 누적합을 담을 배열
-    val g = LongArray(maxN + 1)
-    for (i in 1..maxN) {
-        g[i] = g[i - 1] + f[i]
-    }
+            // 구간 누적합을 담을 배열
+            val g = LongArray(maxN + 1)
+            for (i in 1..maxN) {
+                g[i] = g[i - 1] + f[i]
+            }
 
 //    println(g.contentToString())
 
-    for (n in allInputs) {
-        sb.append(g[n]).append('\n')
-    }
+            for (n in allInputs) {
+                sb.append(g[n]).append('\n')
+            }
 
-    print(sb)
+            print(sb)
+        }
+
+    }
 }

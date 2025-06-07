@@ -7,69 +7,73 @@ import java.io.OutputStreamWriter
 import java.util.*
 
 class _16934_trie {
-}
 
-fun main() {
+    companion object {
 
-    val br = BufferedReader(InputStreamReader(System.`in`))
-    var bw = BufferedWriter(OutputStreamWriter(System.`out`))
+        @JvmStatic
+        fun main(args: Array<String>) {
 
-    var N = br.readLine().toInt()
+            val br = BufferedReader(InputStreamReader(System.`in`))
+            var bw = BufferedWriter(OutputStreamWriter(System.`out`))
 
-    var trie = TrieNickName()
+            var N = br.readLine().toInt()
 
-    var nickNameNumMap = mutableMapOf<String, Int>()
+            var trie = TrieNickName()
 
-    while(N > 0) {
+            var nickNameNumMap = mutableMapOf<String, Int>()
 
-        var st = StringTokenizer(br.readLine())
+            while(N > 0) {
 
-        var nickName = st.nextToken()
+                var st = StringTokenizer(br.readLine())
 
-        // 1. 해당 단어가 트리에 있는지 확인
-        val isExists = trie.search(nickName)
+                var nickName = st.nextToken()
 
-        // 2. 존재하면 더해서 반환 미존재면 map insert -> 출력 후 종료
-        if (isExists) {
-            val prev = (nickNameNumMap[nickName] ?: 0)
-            val newCount = prev + 1
-            nickNameNumMap[nickName] = newCount
-            println("$nickName$newCount")
-            N -= 1
-            continue
-        }
-        // 2-1. 그게 아니면 새로 생성해서 맵에 넣음
-        else {
-            nickNameNumMap.put(nickName, 1)
-        }
+                // 1. 해당 단어가 트리에 있는지 확인
+                val isExists = trie.search(nickName)
 
-        // 3. 접두사가 존재하는지를 파악
-        var prefix: String = ""
-        var printed = false
-        for (c in  nickName.toCharArray()) {
+                // 2. 존재하면 더해서 반환 미존재면 map insert -> 출력 후 종료
+                if (isExists) {
+                    val prev = (nickNameNumMap[nickName] ?: 0)
+                    val newCount = prev + 1
+                    nickNameNumMap[nickName] = newCount
+                    println("$nickName$newCount")
+                    N -= 1
+                    continue
+                }
+                // 2-1. 그게 아니면 새로 생성해서 맵에 넣음
+                else {
+                    nickNameNumMap.put(nickName, 1)
+                }
 
-            prefix += c
+                // 3. 접두사가 존재하는지를 파악
+                var prefix: String = ""
+                var printed = false
+                for (c in  nickName.toCharArray()) {
 
-            // 접두사 false 이라면 바로 출력하고 트리에 삽입
-            val isNotExists = trie.startsWith(prefix)
+                    prefix += c
 
-            if (isNotExists == false) {
+                    // 접두사 false 이라면 바로 출력하고 트리에 삽입
+                    val isNotExists = trie.startsWith(prefix)
+
+                    if (isNotExists == false) {
+                        trie.insert(nickName)
+                        println(prefix)
+                        printed = true
+                        break
+                    }
+                }
+
+                if (printed) {
+                    N -= 1
+                    continue
+                }
+
+                // 4. 전체 글자라면 해당글자 insert 하고 출력 하고종료
                 trie.insert(nickName)
-                println(prefix)
-                printed = true
-                break
+                println(nickName)
+                N -= 1
             }
         }
-
-        if (printed) {
-            N -= 1
-            continue
-        }
-
-        // 4. 전체 글자라면 해당글자 insert 하고 출력 하고종료
-        trie.insert(nickName)
-        println(nickName)
-        N -= 1
     }
 }
 
