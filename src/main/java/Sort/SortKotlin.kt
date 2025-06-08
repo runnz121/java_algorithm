@@ -1,8 +1,5 @@
 package Sort
 
-import java.util.*
-import kotlin.Comparator
-
 class SortKotlin {
 
     companion object {
@@ -23,6 +20,9 @@ class SortKotlin {
 
             println("\n=== customSortTwoCondition ===")
             sorter.customSortTwoCondition()
+
+            println("\n=== pairSort ===")
+            sorter.pairSort()
         }
     }
 
@@ -101,6 +101,43 @@ class SortKotlin {
         )
 
         println(sorted)
+    }
+
+    fun pairSort() {
+
+        // 오름 차순 정렬
+        // 예시 리스트
+        val lists = mutableListOf(
+            3 to 5,
+            1 to 4,
+            2 to 2,
+            1 to 3,
+            2 to 1
+        )
+
+        // 1) pair.first 기준으로만 오름차순 정렬 (in-place)
+        lists.sortBy { it.first }
+        println(lists)  // [(1,4), (1,3), (2,2), (2,1), (3,5)]
+
+        // 2) pair.first가 같으면 pair.second 기준으로 추가 정렬
+        lists.sortWith(
+            compareBy<Pair<Int, Int>> { it.first }
+                .thenBy { it.second }
+        )
+        println(lists)  // [(1,3), (1,4), (2,1), (2,2), (3,5)]
+
+        // ---------------------------------------------------
+
+        // 내림 차순 정렬
+        // 1) first만 내림차순
+        lists.sortByDescending { it.first }
+        println(lists)  // [(3,5), (2,2), (2,1), (1,4), (1,3)]
+
+        // 2) first가 같으면 second도 내림차순으로
+        lists.sortWith(
+            compareByDescending<Pair<Int, Int>> { it.first }
+                .thenByDescending { it.second }
+        )
     }
 
     data class Person(val name: String, val age: Int)
