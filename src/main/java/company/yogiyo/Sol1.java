@@ -1,4 +1,4 @@
-package dfs.yogiyo;
+package company.yogiyo;
 
 public class Sol1 {
 

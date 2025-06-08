@@ -1,4 +1,4 @@
-package dfs.zum;
+package company.zum;
 
 public class Sol1 {
     public long solution(long n) {

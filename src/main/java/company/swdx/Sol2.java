@@ -1,4 +1,4 @@
-package dfs.swdx;
+package company.swdx;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

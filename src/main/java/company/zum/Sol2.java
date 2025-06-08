@@ -1,4 +1,4 @@
-package dfs.zum;
+package company.zum;
 
 import java.util.ArrayList;
 import java.util.Arrays;

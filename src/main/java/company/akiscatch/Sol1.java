@@ -1,4 +1,4 @@
-package akiscatch;
+package company.akiscatch;
 
 import java.io.IOException;
 import java.nio.file.Files;

@@ -1,4 +1,4 @@
-package dfs.zum;
+package company.zum;
 
 public class Sol3 {
     public int solution(int[] histogram) {

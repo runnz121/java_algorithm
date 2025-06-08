@@ -1,4 +1,4 @@
-package akiscatch.Sol2;
+package company.akiscatch.Sol2;
 
 public abstract class IoTDevice {
 

@@ -1,4 +1,4 @@
-package dfs.swdx;
+package company.swdx;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
