@@ -137,4 +137,29 @@ public class Ex1Java {
     public static int gcd(int a, int b) {
         return b == 0 ? a : gcd(b, a % b);
     }
+
+
+    // 11. 에리스토 테네스의 채
+    public static List<Integer> sieve(int n) {
+        boolean[] isPrime = new boolean[n + 1];
+        Arrays.fill(isPrime, true);
+        List<Integer> primes = new ArrayList<>();
+
+        for (int i = 2; i <= n; i++) {
+            if (isPrime[i]) {
+                primes.add(i);
+                // 시작을 i*i로, step을 i로 설정하면 √n 전까지 충분히 마킹
+                for (int j = i * i; j <= n; j += i) {
+                    isPrime[j] = false;
+                }
+            }
+        }
+        return primes;
+    }
+
+    public static void main(String[] args) {
+        int n = 100;
+        List<Integer> primes = sieve(n);
+        System.out.println("Primes up to " + n + ": " + primes);
+    }
 }

@@ -138,11 +138,48 @@ class Ex1 {
         return if (b == 0) a else gcd(b, a % b)
     }
 
-    fun lcm(a: Int, b: Int): Int {
-        return a / gcd(a, b) * b
+    fun lcm(a : Int, b: Int): Int {
+        return a * b / gcd(a, b)
     }
 
     fun findLCMOfList(numbers: List<Int>): Int {
         return numbers.reduce { acc, num -> lcm(acc, num) }
+    }
+
+    // 11. 에리스토테네스의 채
+    /**
+     * 1. 2부터 n까지 숫자를 나열하고, 초기에 모두 ‘소수(prime)’로 표시한다.
+     * 2. 가장 작은 표시된 소수 p(처음엔 2)를 선택해, p의 제곱(p²)부터 시작해 p의 배수들을 모두 ‘합성수(composite)’로 지운다.
+     * 3. 그다음 남은 가장 작은 소수로 넘어가 같은 과정을 반복(p → 다음 소수 → 배수 지우기)하며, p²이 n보다 커질 때까지 진행한다.
+     * 4. 최종적으로 지워지지 않은 숫자들이 모두 2~n 구간의 소수가 된다.
+     */
+    fun sieve(n: Int): List<Int> {
+        // 1) 0..n 범위의 Boolean 배열을 만들어, 모두 'true'(소수로 가정)로 초기화
+        val isPrime = BooleanArray(n + 1) { true }
+
+        // 2) 결과를 담을 가변 리스트 선언
+        val primes = mutableListOf<Int>()
+
+        // 3) 2부터 n까지 차례로 검사
+        for (i in 2..n) {
+            // 4) 아직 소수로 남아 있다면
+            if (isPrime[i]) {
+                // 5) i는 소수이므로 결과 리스트에 추가
+                primes += i
+
+                // 6) i의 제곱(i*i)부터 시작해서 i만큼 건너뛰며 (p 이전 배수(2p, 3p …)는 이미 더 작은 소수에서 걸러냈으므로)
+                //    그 배수들은 모두 합성수이므로 'false'로 표시
+                for (j in i * i..n step i) {
+                    isPrime[j] = false
+                }
+            }
+        }
+
+        // 7) 최종적으로 모은 소수 리스트를 반환
+        return primes
+    }
+
+    fun main() {
+        println(sieve(100))  // 2, 3, 5, 7, 11, …
     }
 }

@@ -49,7 +49,7 @@ class Sol3 {
                 candidate = candidate.plusDays(1)
             }
 
-            // 이자 계산용 일수: 초일산입·말일불산입
+            // 이자 계산용 일수: 초일산입·말일불산입 (localDate 타입이라 크로노 유닛으로)
             val days = ChronoUnit.DAYS.between(prevLocal, candidate).toInt()
 
             val interest = (loanAmount.toDouble()
