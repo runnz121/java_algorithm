@@ -46,7 +46,6 @@ import java.util.*;
 public class Sol3 {
 
     public int solution(int[] A) {
-        int n = A.length;
         // 0번 비트 ~ 30번 비트까지, 각 비트가 1인 수들을 담을 리스트 배열
         List<Integer>[] groups = new ArrayList[31];
         for (int bit = 0; bit < 31; bit++) {
@@ -58,6 +57,7 @@ public class Sol3 {
         //    해당 비트의 리스트에 추가
         for (int x : A) {
             for (int bit = 0; bit < 31; bit++) {
+                // 숫자 x 의 bit 번째 비트가 1인지 확인 == bit 번째가 1인가 확인
                 if ((x & (1 << bit)) != 0) {
                     groups[bit].add(x);
                 }
@@ -71,5 +71,12 @@ public class Sol3 {
         }
 
         return answer;
+    }
+
+    public static void main(String[] args) {
+        Sol3 s3 = new Sol3();
+        int [] x = new int[]{13, 24};
+        int solution = s3.solution(x);
+        System.out.println(solution);
     }
 }

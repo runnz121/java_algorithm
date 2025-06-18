@@ -28,16 +28,16 @@ public class Sol1 {
         int[] pi = new int[n];
         // π[0] = 0 으로 초기화되어 있음
         for (int i = 1; i < n; i++) {
-            int j = pi[i - 1];
+            int x = pi[i - 1];
             // S[i] 에 맞출 수 있는 가장 긴 border(j)를 찾을 때까지 뒤로 당김
-            while (j > 0 && S.charAt(i) != S.charAt(j)) {
-                j = pi[j - 1];
+            while (x > 0 && S.charAt(i) != S.charAt(x)) {
+                x = pi[x - 1];
             }
             // 같으면 border 길이 하나 확장
-            if (S.charAt(i) == S.charAt(j)) {
-                j++;
+            if (S.charAt(i) == S.charAt(x)) {
+                x++;
             }
-            pi[i] = j;
+            pi[i] = x;
         }
         // π[n-1]은 proper prefix & suffix 중 최장 길이
         return pi[n - 1];
