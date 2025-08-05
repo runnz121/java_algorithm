@@ -61,6 +61,7 @@ public class SortJava {
         List<String> sortedByLength = list.stream()
                 .sorted(Comparator.comparingInt(String::length))
                 .toList();
+
         System.out.println(sortedByLength);
     }
 
