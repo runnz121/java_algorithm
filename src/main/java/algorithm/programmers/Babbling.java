@@ -14,7 +14,9 @@ public class Babbling {
         recursive("", 0);
 
         for (int x = 0; x < babbling.length; x++) {
-            if (extra.contains(babbling[x])) answer += 1;
+            if (extra.contains(babbling[x])) {
+                answer += 1;
+            }
         }
 
         return answer;

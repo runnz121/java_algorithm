@@ -32,16 +32,21 @@ public class _21918_1 {
         return true;
     }
 
-    // 최대 공약수
+    // 최소 공배수
     public static long lcm(long a, long b) {
         return a / gcd(a, b) * b;
     }
 
-    // 최소 공배수
+    // 최대 공약수
     public static long gcd(long a, long b) {
-        if (b == 0) return a;
+        if (b == 0) {
+            return a;
+        }
         return gcd(b, a % b);
     }
+
+
+
 
     public static long gcdWhile(long a, long b) {
         while (b != 0) {
