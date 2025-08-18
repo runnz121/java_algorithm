@@ -26,6 +26,9 @@ public class ReverseALinkedList {
          *
          * 결과:
          * 5 -> 4 -> 3 -> 2 -> 1 -> null
+         *
+         * prev는 이미 뒤집힌 앞부분의 head를 가리킴
+         * current는 아직 뒤집지 않은 나머지의 head를 가리킴
          */
 
         public static SinglyLinkedListNode reverse(SinglyLinkedListNode llist) {
@@ -50,6 +53,44 @@ public class ReverseALinkedList {
             // prev 가 새로운 head
             return prev;
         }
+
+        static void printList(SinglyLinkedListNode head) {
+            SinglyLinkedListNode current = head;
+            while (current != null) {
+                System.out.print(current.data + (current.next != null ? " -> " : ""));
+                current = current.next;
+            }
+            System.out.println();
+        }
+
+        static SinglyLinkedListNode buildList(int... values) {
+            if (values.length == 0) return null;
+            SinglyLinkedListNode head = new SinglyLinkedListNode(values[0]);
+            SinglyLinkedListNode current = head;
+            for (int i = 1; i < values.length; i++) {
+                current.next = new SinglyLinkedListNode(values[i]);
+                current = current.next;
+            }
+            return head;
+        }
+
+        // 테스트
+        public static void main(String[] args) {
+            SinglyLinkedListNode head = buildList(1, 2, 3, 4, 5);
+            System.out.println("Before:");
+            printList(head);
+
+            head = reverse(head);
+
+            System.out.println("After:");
+            printList(head);
+        }
+
+
+
+
+
+
 
         // 재귀버전
 
