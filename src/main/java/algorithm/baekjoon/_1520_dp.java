@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
  * 2. 더 낮은 높이만 이동
  * 3. dfs + dp 로 처리
  * 4. shortestpath == y,x 에서 도착지점까지 가는 경로 수
- *
+ * 5. 4 ^ 2500 임으로 메모이제이션이 필요하다
  */
 public class _1520_dp {
 
@@ -81,6 +81,7 @@ public class _1520_dp {
                 continue;
             }
 
+            // 해당 좌표에서 목적지까지 도달하는 값 모두 더함
             shortestPath[y][x] += dfs(newY, newX);
         }
 
