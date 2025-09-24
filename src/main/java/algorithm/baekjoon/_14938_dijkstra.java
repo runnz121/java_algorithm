@@ -10,9 +10,8 @@ import java.util.*;
  * - 양방향 간선 조건과 길이 조건이 있음
  * - 특정 지역엣서의 수색범위 M 이하로 도달 가능한 모든 아이템 합을 구해야함
  * - 가능한 모든 시작 지역 계산 (최대 아이템 수 출력)
- *
  */
-public class _14938 {
+public class _14938_dijkstra {
 
     static List<List<Node>> nodes;
 
