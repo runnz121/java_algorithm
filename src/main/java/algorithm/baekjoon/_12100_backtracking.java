@@ -33,42 +33,59 @@ public class _12100_backtracking {
             }
         }
 
-        backTracking(0,  0, -1);
+        backTracking(0,  maps);
     }
 
-    static void backTracking(int accSum, int count, int moveFlag) {
+    static void backTracking(int depth, int[][] maps) {
 
         // 종료조건
-        if (isTerminate(count) == false) {
-            answer = Math.max(accSum, answer);
+        if (isTerminate() == false && depth == 5) {
+            answer = Math.max(maxTitle(maps), answer);
             return;
         }
 
-        // 이동
-        move(moveFlag);
+        // 이동 (상하좌우 모두 확인)
+        for (int dir = 0; dir < 4; dir++) {
+            move(dir);
+        }
 
-        // 상
-        backTracking();
-
-        // 하
-        backTracking();
-
-        // 좌
-        backTracking();
-
-        // 우
         backTracking();
     }
 
-    static void move() {
+    static void move(int dir) {
 
+        // 상
+        if (dir == 0) {
+
+        }
+        // 하
+        else if (dir == 1) {
+
+        }
+        // 좌
+        else if (dir == 2) {
+
+        }
+        // 우
+        else {
+
+        }
+    }
+
+    static int maxTitle(int[][] maps) {
+
+        int max = 0;
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                max = Math.max(maps[i][j], max);
+            }
+        }
+
+        return max;
     }
 
     static boolean isTerminate(int count) {
 
-        if (count == 5) {
-            return false;
-        }
 
         boolean toGo = false;
         for (int y = 0; y < N; y++) {
