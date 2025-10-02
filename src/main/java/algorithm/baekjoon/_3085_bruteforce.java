@@ -25,21 +25,22 @@ public class _3085_bruteforce {
             }
         }
 
-        char[][] copyMap = new char[n][n];
-        for (int k = 0; k < n; k++) {
-            copyMap[k] = maps[k].clone();
-        }
+        // 스왑을 하지 않았을 때의 최대값으로 초기화
+        answer = Math.max(checkMaxRow(), checkMaxColumn());
 
         for (int y = 0; y < n; y++) {
             for (int x = 0; x < n; x++) {
                 char std = maps[y][x];
 
-                for (int n = 0; n < 4; n++) {
+                for (int d = 0; d < 4; d++) {
 
-                    int newY = y + dy[n];
-                    int newX = x + dx[n];
+                    int newY = y + dy[d];
+                    int newX = x + dx[d];
 
-                    if (newY < 0 || newX < 0 || newX >= n || newY >= n) continue;
+                    // 전역 n(보드 크기)로 경계 체크
+                    if (newY < 0 || newX < 0 || newX >= n || newY >= n) {
+                        continue;
+                    }
 
                     char comp = maps[newY][newX];
                     if (std != comp) {
@@ -64,6 +65,7 @@ public class _3085_bruteforce {
 
     }
 
+    // 열 기준 확인
     static int checkMaxRow() {
         int maxCount = 1;
 
@@ -84,6 +86,7 @@ public class _3085_bruteforce {
         return maxCount;
     }
 
+    // 행 기준 확인
     static int checkMaxColumn() {
         int maxCount = 1;
 
