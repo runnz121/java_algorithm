@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="UnionFindTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-03-03T14:47:09" hostname="pupuui-MacBookPro.local" time="0.012">
+  <properties/>
+  <testcase name="test()" classname="UnionFindTest" time="0.012"/>
+  <system-out><![CDATA[2
+[0, 1, 2, 3, 4]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
